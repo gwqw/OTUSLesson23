@@ -18,9 +18,6 @@ void RequestHandler::do_read() {
             {
                 if (!ec)
                 {
-                    cout << "Read " << length << "bytes: "
-                         << string(data_.begin(), data_.begin() + length)
-                         << endl;
                     async::receive(handle_, data_.data(), length);
                     do_read();
                 } else {

@@ -15,7 +15,7 @@
 #include "command.h"
 #include "thread_pool.h"
 
-//#define MULTI_THREAD
+#define MULTI_THREAD
 
 /// Bulk of commands
 struct BulkCmd {
