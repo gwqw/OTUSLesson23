@@ -71,6 +71,7 @@ target_link_libraries(${TEST_NAME}
     ${Boost_LIBRARIES}
 )
 target_link_libraries(${EXE_NAME} Threads::Threads)
+target_link_libraries(${TEST_NAME} Threads::Threads)
 
 # installation
 install(TARGETS ${EXE_NAME} RUNTIME DESTINATION bin)
