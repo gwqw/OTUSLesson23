@@ -32,12 +32,12 @@ void RequestHandler::do_read() {
 
 
 void BulkAsyncServer::do_accept() {
-    acceptor_.async_accept(
-            [this](boost::system::error_code ec, ba::ip::tcp::socket socket)
+    acceptor_.async_accept(socket_,
+            [this](boost::system::error_code ec)
             {
                 if (!ec)
                 {
-                    std::make_shared<RequestHandler>(std::move(socket), bulk_size_)->start();
+                    std::make_shared<RequestHandler>(std::move(socket_), bulk_size_)->start();
                 }
 
                 do_accept();

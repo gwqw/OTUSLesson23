@@ -30,9 +30,9 @@ private:
 
 class BulkAsyncServer {
 public:
-    BulkAsyncServer(ba::io_service& io_context, const ba::ip::tcp::endpoint& endpoint,
-            std::size_t bulk_size)
-        : acceptor_(io_context, endpoint), bulk_size_(bulk_size)
+    BulkAsyncServer(ba::io_service& io_service, const ba::ip::tcp::endpoint& endpoint,
+                    std::size_t bulk_size)
+        : acceptor_(io_service, endpoint), socket_(io_service), bulk_size_(bulk_size)
     {
         do_accept();
     }
@@ -42,5 +42,6 @@ private:
     void do_accept();
 
     boost::asio::ip::tcp::acceptor acceptor_;
+    ba::ip::tcp::socket socket_;
     std::size_t bulk_size_ = 0;
 };
